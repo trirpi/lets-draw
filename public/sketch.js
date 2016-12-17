@@ -52,6 +52,7 @@ function mouseDragged() {
 }
 
 function draw() {
+    document.getElementById("brush-color").style.backgroundColor = "rgb("+lineColor[0]+","+lineColor[1]+","+lineColor[2]+")";
     if (mouseIsPressed) {
         mouseDragged();
     }
