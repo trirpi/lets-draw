@@ -27,10 +27,10 @@ a {
 
 .sidebar {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: -200px;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     color: white;
     font-family: sans-serif;
     width: 140px;
@@ -44,7 +44,7 @@ a {
 .footer {
     color: #c8c8c8;
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .toggle {
@@ -61,7 +61,7 @@ a {
 }
 
 #sidebartoggler:checked + .page-wrap .sidebar {
-    left: 0px;
+    left: 0;
 }
 
 #sidebartoggler:checked + .page-wrap .toggle {
@@ -83,4 +83,8 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+canvas:active {
+    cursor: crosshair;
 }
