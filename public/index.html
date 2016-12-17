@@ -26,7 +26,8 @@
       <div class="sidebar" id="options">
           <h2>Lets draw!</h2>
           <hr>
-          <h4>colors</h4>
+          <h4>color</h4>
+          <div id="brush-color"><br></div>
           <div class="sidebarel" id="colors">
 
           </div>
@@ -35,7 +36,7 @@
 
           </div>
           <hr>
-          <button onclick="save()">Download drawing</button>
+          <button onclick="saveCanvas()">Download drawing</button>
           <hr>
           <h3>What's this?</h3>
           <p>Lets draw is a webapp where you can draw. While you are drawing others can also draw.</p>
@@ -48,7 +49,7 @@
     </div>
 
 <script>
-    function save() {
+    function saveCanvas() {
         var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         window.location.href = image; // it will save locally
     }
