@@ -1,7 +1,7 @@
 {
   "name": "lets-draw",
   "version": "1.0.0",
-  "description": "draw together in the matrix",
+  "description": "draw together on a canvas",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +17,9 @@
   "dependencies": {
     "express": "^4.14.0",
     "socket.io": "^1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TriRpi/lets-draw/"
   }
 }
