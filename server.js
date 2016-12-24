@@ -2,14 +2,14 @@
 var express = require('express'); // import express library
 var socket = require('socket.io');
 
-var config = require('./config');
+var config = require(__dirname + '/config');
 
 var app = express();
 var server = app.listen(config.port);
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
-console.log('[*] info: server running');
+console.log(' * Running on http://' + config.server + ':' + config.port.toString());
 
 var io = socket(server);
 
