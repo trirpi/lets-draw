@@ -19,7 +19,7 @@ function setup() {
     bSlider = createSlider(0, 255, lineColor[2]);
     bSlider.parent('colors');
 
-    tSlider = createSlider(2, 40, 20);
+    tSlider = createSlider(5, 40, 20);
     tSlider.parent('thickness');
 
 }
