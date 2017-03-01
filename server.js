@@ -1,29 +1,25 @@
-
-var express = require('express'); // import express library
-var socket = require('socket.io');
-
 var config = require(__dirname + '/config');
+var express = require('express');
 
 var app = express();
-var server = app.listen(config.port);
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+server.listen(config.port);
 
 app.use(express.static(__dirname + '/public'));
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/public/index.html');
+});
 
 console.log(' * Running on http://' + config.server + ':' + config.port.toString());
 
-var io = socket(server);
-
-io.sockets.on('connection', newConnection);
-
-function newConnection(socket) {
+io.sockets.on('connection', function (socket) {
     console.log('[*] info: new connection ' + socket.id);
 
-    socket.on('mouse', mouseMsg);
-
-    function mouseMsg(data) {
+    socket.on('mouse', function (data) {
         if (data.thickness < 50) {
             socket.broadcast.emit('mouse', data);
         }
-    }
-}
-
+    });
+});
