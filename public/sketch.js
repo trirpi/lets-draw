@@ -13,13 +13,17 @@ function setup() {
     socket.on('mouse', newDrawing);
 
     rSlider = createSlider(0, 255, lineColor[0]);
+    rSlider.style('width', '100%');
     rSlider.parent('colors');
     gSlider = createSlider(0, 255, lineColor[1]);
+    gSlider.style('width', '100%');
     gSlider.parent('colors');
     bSlider = createSlider(0, 255, lineColor[2]);
+    bSlider.style('width', '100%');
     bSlider.parent('colors');
 
     tSlider = createSlider(5, 40, 20);
+    tSlider.style('width', '100%');
     tSlider.parent('thickness');
 
 }
