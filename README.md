@@ -5,6 +5,13 @@ Basically you can draw with other people, all on the same canvas.
 
 I made this to make myself familiar with websockets. I also learned a lot about node.
 
-You can find a version of this website on http://drawing.tristantrouwen.com/.
+You can find a version of this website on https://drawing.tristantrouwen.com/.
+
+## Screenshot
+
+<img src="https://i.imgur.com/BJgkeXY.png"
+     alt="Screenshot website" />
+
+## Credits
 
 This project is inspired by a <a href="https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH">video series off Daniel Shiffman</a>.
