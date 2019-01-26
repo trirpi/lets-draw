@@ -7,10 +7,10 @@ I made this to make myself familiar with websockets. I also learned a lot about 
 
 You can find a version of this website on https://drawing.tristantrouwen.com/.
 
-## Screenshot
+## Sneak peak
 
-<img src="https://i.imgur.com/BJgkeXY.png"
-     alt="Screenshot website" />
+<img src="https://i.imgur.com/LLjnTx9.gif"
+     alt="Animated GIF website" />
 
 
 ## Installation
