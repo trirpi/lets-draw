@@ -3,6 +3,7 @@ var lineThickness;
 var lineColor;
 var cursorX = 100;
 var cursorY = 100;
+var speed = 20;
 
 function setup() {
     var canv = createCanvas(windowWidth, windowHeight);
@@ -56,7 +57,7 @@ function draw() {
 }
 
 function changeSlider() {
-    lineThickness = parseInt(document.getElementById("thickness").value) + 10; // to create a minimum all values are -10
+    lineThickness = parseInt(document.getElementById("thickness").value);
     lineColor = [
         parseInt(document.getElementById("r").value), 
         parseInt(document.getElementById("g").value), 
