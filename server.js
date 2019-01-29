@@ -14,25 +14,26 @@ app.get('/', function (req, res) {
 
 console.log(' * Running on http://' + config.server + ':' + config.port.toString());
 
+client_setting = {};
 io.sockets.on('connection', function (socket) {
     console.log('[*] info: new connection ' + socket.id);
-    client_setting = {
-        thickness: 30,
+    client_setting[socket.id] = {
+        thickness: 0,
         color: [255,255,255]
-    };
+    }
 
     socket.on('mouse', function (data) {
         all_data = {
             x: data.x,
             y: data.y,
-            color: client_setting.color,
-            thickness: client_setting.thickness
+            color: client_setting[socket.id].color,
+            thickness: client_setting[socket.id].thickness
         }
         socket.broadcast.emit('mouse', all_data);
     });
     socket.on('changeSlider', function (data) {
         if (data.thickness <= 50) {
-            client_setting = {
+            client_setting[socket.id] = {
                 thickness: data.thickness,
                 color: data.color
             };

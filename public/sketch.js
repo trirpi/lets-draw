@@ -1,9 +1,8 @@
 var socket;
 var lineThickness;
 var lineColor;
-var cursorX = 100;
-var cursorY = 100;
-var speed = 20;
+var cursorX;
+var cursorY;
 
 function setup() {
     var canv = createCanvas(windowWidth, windowHeight);
@@ -17,7 +16,14 @@ function setup() {
     document.getElementById("b").value = lineColor[2].toString();
 
     socket = io.connect('http://localhost:3000');
-    changeSlider()
+
+    lineThickness = parseInt(document.getElementById("thickness").value);
+    var data = {
+        thickness: lineThickness,
+        color: lineColor
+    };
+    socket.emit('changeSlider', data);
+
     socket.on('mouse', newDrawing);
 }
 
@@ -47,6 +53,8 @@ function mouseDragged() {
     noStroke();
     fill(lineColor[0], lineColor[1], lineColor[2]);
     ellipse(cursorX, cursorY, lineThickness, lineThickness);
+
+    console.log(lineColor);
 }
 
 function draw() {
