@@ -1,6 +1,9 @@
 var socket;
 var lineThickness;
 var lineColor;
+var cursorX = 100;
+var cursorY = 100;
+var speed = 20;
 
 function setup() {
     var canv = createCanvas(windowWidth, windowHeight);
@@ -9,23 +12,13 @@ function setup() {
 
     lineColor = [random(1,255), random(1,255), random(1,255)];
 
+    document.getElementById("r").value = lineColor[0].toString(); 
+    document.getElementById("g").value = lineColor[1].toString(); 
+    document.getElementById("b").value = lineColor[2].toString();
+
     socket = io.connect('http://localhost:3000');
+    changeSlider()
     socket.on('mouse', newDrawing);
-
-    rSlider = createSlider(0, 255, lineColor[0]);
-    rSlider.style('width', '100%');
-    rSlider.parent('colors');
-    gSlider = createSlider(0, 255, lineColor[1]);
-    gSlider.style('width', '100%');
-    gSlider.parent('colors');
-    bSlider = createSlider(0, 255, lineColor[2]);
-    bSlider.style('width', '100%');
-    bSlider.parent('colors');
-
-    tSlider = createSlider(5, 40, 20);
-    tSlider.style('width', '100%');
-    tSlider.parent('thickness');
-
 }
 
 function newDrawing(data) {
@@ -34,25 +27,26 @@ function newDrawing(data) {
     ellipse(data.x, data.y, data.thickness, data.thickness);
 }
 
+function mousePressed() {
+    cursorX = mouseX;
+    cursorY = mouseY;
+}
+
 function mouseDragged() {
+    var mousex = mouseX;
+    var mousey = mouseY;
 
+    cursorX = 0.90*cursorX+0.10*mousex;
+    cursorY = 0.90*cursorY+0.10*mousey;
     var data = {
-        x: mouseX,
-        y: mouseY,
-        color: lineColor,
-        thickness: lineThickness
+        x: cursorX,
+        y: cursorY,
     };
-
     socket.emit('mouse', data);
-
-    lineThickness = tSlider.value();
-    lineColor = [rSlider.value(), gSlider.value(), bSlider.value()];
 
     noStroke();
     fill(lineColor[0], lineColor[1], lineColor[2]);
-    ellipse(mouseX, mouseY, lineThickness, lineThickness);
-
-
+    ellipse(cursorX, cursorY, lineThickness, lineThickness);
 }
 
 function draw() {
@@ -60,4 +54,19 @@ function draw() {
     if (mouseIsPressed) {
         mouseDragged();
     }
+}
+
+function changeSlider() {
+    lineThickness = parseInt(document.getElementById("thickness").value);
+    lineColor = [
+        parseInt(document.getElementById("r").value), 
+        parseInt(document.getElementById("g").value), 
+        parseInt(document.getElementById("b").value)
+    ];
+
+    var data = {
+        thickness: lineThickness,
+        color: lineColor
+    };
+    socket.emit('changeSlider', data);
 }

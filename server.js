@@ -16,10 +16,26 @@ console.log(' * Running on http://' + config.server + ':' + config.port.toString
 
 io.sockets.on('connection', function (socket) {
     console.log('[*] info: new connection ' + socket.id);
+    client_setting = {
+        thickness: 30,
+        color: [255,255,255]
+    };
 
     socket.on('mouse', function (data) {
-        if (data.thickness < 50) {
-            socket.broadcast.emit('mouse', data);
+        all_data = {
+            x: data.x,
+            y: data.y,
+            color: client_setting.color,
+            thickness: client_setting.thickness
+        }
+        socket.broadcast.emit('mouse', all_data);
+    });
+    socket.on('changeSlider', function (data) {
+        if (data.thickness <= 50) {
+            client_setting = {
+                thickness: data.thickness,
+                color: data.color
+            };
         }
     });
 });
