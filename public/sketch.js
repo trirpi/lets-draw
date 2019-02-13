@@ -53,8 +53,6 @@ function mouseDragged() {
     noStroke();
     fill(lineColor[0], lineColor[1], lineColor[2]);
     ellipse(cursorX, cursorY, lineThickness, lineThickness);
-
-    console.log(lineColor);
 }
 
 function draw() {
