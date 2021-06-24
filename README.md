@@ -5,8 +5,6 @@ Basically you can draw with other people, all on the same canvas.
 
 I made this to make myself familiar with websockets. I also learned a lot about node.
 
-You can find a version of this website on https://drawing.tristantrouwen.com/.
-
 ## Sneak peak
 
 <img src="https://i.imgur.com/LLjnTx9.gif"
